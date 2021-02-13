@@ -1,17 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { useEffect, useState } from 'react'
+import { render } from 'react-dom'
+import "./style/style.css"
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const Index = () => {
+  const [theam, setTheam] = useState('white')
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+
+  const theamHandler = () => {
+    // document.querySelector('html').dataset['theam']
+    if (theam === 'white') {
+      setTheam('dark')
+    } else {
+      setTheam('white')
+    }
+  }
+  useEffect(() => {
+    document.querySelector('html').dataset['theam'] = theam
+  }, [theam])
+
+  return (
+    <div>
+      <h1>Hello world</h1>
+      <button onClick={theamHandler}>
+        Сменить тему
+      </button>
+    </div>
+  )
+}
+
+render(<Index />, document.getElementById('root'))
+
